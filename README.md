@@ -60,7 +60,10 @@ This exmaple illustrates JPA and JAXB APIs using a very simple address book data
 
 1. Create derby database "addresses"  
 `java -jar target/XMLTool.jar derby 'jdbc:derby:derby.data/addresses;create=true' db/createDbAddresses.sql`
-1. Load XML file "addresses.xml" into database addresses
+1. Load XML file "addresses.xml" into database addresses  
+`java -jar target/XMLTool.jar load xml/addresses.xml`
+1. List the database content:  
+`java -jar target/XMLTool.jar derby 'jdbc:derby:derby.data/addresses' db/listAddresses.sql`
 
 #### Messages2
 1. Create derby database "messages2"  
