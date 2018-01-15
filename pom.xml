@@ -1,0 +1,242 @@
+<project
+  xmlns="http://maven.apache.org/POM/4.0.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>at.fhv.XMLTool</groupId>
+  <artifactId>XMLTool</artifactId>
+  <version>1.0-SNAPSHOT</version>
+  <packaging>jar</packaging>
+
+  <name>XMLTool</name>
+  <url>http://maven.apache.org</url>
+
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <maven.compiler.source>1.8</maven.compiler.source>
+    <maven.compiler.target>1.8</maven.compiler.target>
+  </properties>
+
+
+  <dependencies>
+
+    <!-- https://mvnrepository.com/artifact/net.sf.saxon/Saxon-HE -->
+    <dependency>
+      <groupId>net.sf.saxon</groupId>
+      <artifactId>Saxon-HE</artifactId>
+      <version>9.4</version>
+    </dependency>
+
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>3.8.1</version>
+      <scope>test</scope>
+    </dependency>
+
+    <!-- https://mvnrepository.com/artifact/org.apache.derby/derby -->
+    <dependency>
+        <groupId>org.apache.derby</groupId>
+        <artifactId>derby</artifactId>
+        <version>10.13.1.1</version>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/org.apache.derby/derbytools -->
+    <dependency>
+        <groupId>org.apache.derby</groupId>
+        <artifactId>derbytools</artifactId>
+        <version>10.13.1.1</version>
+    </dependency>
+
+    <!-- https://mvnrepository.com/artifact/org.postgresql/postgresql -->
+    <dependency>
+        <groupId>org.postgresql</groupId>
+        <artifactId>postgresql</artifactId>
+        <version>42.1.4</version>
+    </dependency>
+
+    <dependency>
+        <groupId>org.hibernate.javax.persistence</groupId>
+        <artifactId>hibernate-jpa-2.1-api</artifactId>
+        <version>1.0.0.Final</version>
+    </dependency>
+
+    <dependency>
+        <groupId>org.hibernate</groupId>
+        <artifactId>hibernate-entitymanager</artifactId>
+        <version>4.3.6.Final</version>
+    </dependency>
+
+  </dependencies>
+
+  <build>
+    <plugins>
+
+      <plugin>
+        <artifactId>maven-assembly-plugin</artifactId>
+        <configuration>
+          <archive>
+            <manifest>
+              <mainClass>at.fhv.xmltool.XML</mainClass>
+            </manifest>
+          </archive>
+          <descriptorRefs>
+            <descriptorRef>jar-with-dependencies</descriptorRef>
+          </descriptorRefs>
+          <appendAssemblyId>false</appendAssemblyId>
+          <finalName>XMLTool</finalName>
+        </configuration>
+        <executions>
+          <execution>
+            <id>make-assembly</id>
+            <phase>package</phase>
+            <goals>
+              <goal>single</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+
+      <plugin>
+        <groupId>org.jvnet.jaxb2.maven2</groupId>
+        <artifactId>maven-jaxb2-plugin</artifactId>
+        <version>0.11.0</version>
+        <executions>
+            <execution>
+                <goals>
+                    <goal>generate</goal>
+                </goals>
+            </execution>
+        </executions>
+        <configuration>
+          <schemaDirectory>src/main/resources</schemaDirectory>
+          <schemaIncludes>
+            <include>*.xsd</include>
+          </schemaIncludes>
+          <bindingDirectory>src/main/resources</bindingDirectory>
+		  <bindingIncludes>
+		    <include>*.xjb</include>
+		  </bindingIncludes>
+          
+        </configuration>
+      </plugin>
+
+      <plugin>
+          <artifactId>maven-antrun-plugin</artifactId>
+          <version>1.8</version>
+          <executions>
+              <execution> <!--mvn antrun:run@addresses2java-->
+                  <id>addresses2java</id>
+                  <phase>none</phase>
+                  <configuration>
+                      <target>
+                          <echo message="Start generating entities ..."/>
+                          <taskdef name="hibernatetool" classname="org.hibernate.tool.ant.HibernateToolTask"/>
+                          <hibernatetool>
+                              <classpath>
+                              	<path location="hibernatetool/"/>
+                              </classpath>
+                              <jdbcconfiguration
+                                  revengfile="hibernatetool/addresses.xml"
+                                  packagename="at.fhv.xmltool.addressbook.jpa"
+                                  detectmanytomany="true"
+                                  propertyfile="hibernatetool/addresses.properties"/>
+                              <hbm2java destdir="src/main/java" jdk5="true" ejb3="true"/>
+                          </hibernatetool>
+                          <echo message="End generating entities"/>
+                      </target>
+                  </configuration>
+                  <goals>
+                      <goal>run</goal>
+                  </goals>
+              </execution>
+              <execution> <!-- mvn antrun:run@messages2java -->
+                  <id>messages2java</id>
+                  <phase>none</phase>
+                  <configuration>
+                      <target>
+                          <echo message="Start generating entities ..."/>
+                          <taskdef name="hibernatetool" classname="org.hibernate.tool.ant.HibernateToolTask"/>
+                          <hibernatetool>
+                              <classpath>
+                              	<path location="hibernatetool/"/>
+                              </classpath>
+                              <jdbcconfiguration
+                                  revengfile="hibernatetool/messages2.xml"
+                                  packagename="at.fhv.xmltool.messages2.jpa"
+                                  detectmanytomany="true"
+                                  propertyfile="hibernatetool/messages2.properties"/>
+                              <hbm2java destdir="src/main/java" jdk5="true" ejb3="true"/>
+                          </hibernatetool>
+                          <echo message="End generating entities"/>
+                      </target>
+                  </configuration>
+                  <goals>
+                      <goal>run</goal>
+                  </goals>
+              </execution>
+          </executions>
+          <dependencies>
+              <dependency>
+                  <groupId>org.hibernate</groupId>
+                  <artifactId>hibernate-core</artifactId>
+                  <version>4.3.11.Final</version>
+              </dependency>
+              <dependency>
+                  <groupId>org.hibernate</groupId>
+                  <artifactId>hibernate-entitymanager</artifactId>
+                  <version>4.3.11.Final</version>
+              </dependency>
+              <dependency>
+                  <groupId>org.hibernate.common</groupId>
+                  <artifactId>hibernate-commons-annotations</artifactId>
+                  <version>4.0.5.Final</version>
+              </dependency>
+              <dependency>
+                  <groupId>org.hibernate.javax.persistence</groupId>
+                  <artifactId>hibernate-jpa-2.1-api</artifactId>
+                  <version>1.0.0.Final</version>
+              </dependency>
+              <dependency>
+                  <groupId>javax.transaction</groupId>
+                  <artifactId>jta</artifactId>
+                  <version>1.1</version>
+              </dependency>
+              <dependency>
+                  <groupId>freemarker</groupId>
+                  <artifactId>freemarker</artifactId>
+                  <version>2.3.8</version>
+              </dependency>
+              <dependency>
+                  <groupId>org.apache.derby</groupId>
+                  <artifactId>derby</artifactId>
+                  <version>10.13.1.1</version>
+              </dependency>
+              <dependency>
+                  <groupId>commons-logging</groupId>
+                  <artifactId>commons-logging</artifactId>
+                  <version>1.1</version>
+              </dependency>
+              <dependency>
+                  <groupId>commons-collections</groupId>
+                  <artifactId>commons-collections</artifactId>
+                  <version>3.2.1</version>
+              </dependency>
+              <dependency>
+                  <groupId>org.hibernate</groupId>
+                  <artifactId>hibernate-tools</artifactId>
+                  <version>4.3.2.Final</version>
+                  <exclusions>
+                      <exclusion>
+                          <groupId>*</groupId>
+                          <artifactId>*</artifactId>
+                      </exclusion>
+                  </exclusions>
+              </dependency>
+          </dependencies>
+      </plugin>
+
+    </plugins>
+  </build>
+
+</project>

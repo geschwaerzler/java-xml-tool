@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-reverse-engineering PUBLIC
+  "-//Hibernate/Hibernate Reverse Engineering DTD 3.0//EN"
+  "http://hibernate.sourceforge.net/hibernate-reverse-engineering-3.0.dtd" >
+
+<hibernate-reverse-engineering>
+  <schema-selection match-schema="APP"/>
+  <table schema="APP" name="REPLIED_MESSAGES" class="at.fhv.xmltool.messages2.jpa.JPARepliedMessage">
+    <primary-key>
+      <generator class="increment"/>
+    </primary-key>
+    <foreign-key foreign-schema="APP" foreign-table="MESSAGES">
+      <column-ref local-column="MESSAGE_ID" foreign-column="ID"/>
+      <many-to-one property="message"/>
+      <set property="repliedMessages"/>
+    </foreign-key>
+  </table>
+  <table schema="APP" name="MESSAGES" class="at.fhv.xmltool.messages2.jpa.JPAMessage">
+    <primary-key>
+      <generator class="increment"/>
+    </primary-key>
+  </table>
+
+</hibernate-reverse-engineering>

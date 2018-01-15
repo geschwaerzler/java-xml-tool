@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<messages
+	xmlns="http://xmllab.fhv.at/messages2"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://xmllab.fhv.at/messages2 messages2.xsd ">
+	
+  <message from="george.harrison@apple.uk" to="ges@fhv.at" subject="Here comes the sun" >	 
+    <text>
+        Here comes the sun
+        Here comes the sun, and I say
+        It's all right
+	</text>
+    <in-reply-to from="john.lennon@apple.uk">
+        <text>
+            Little darling, it's been a long cold lonely winter
+            Little darling, it feels like years since it's been here
+        </text>
+    </in-reply-to>
+    <in-reply-to from="ringo.starr@apple.uk">
+        <text>
+            Little darling, the smiles returning to the faces
+            Little darling, it seems like years since it's been here
+        </text>
+    </in-reply-to>
+  </message>
+  
+  <message from="john.lennon@apple.uk" to="ge@datenautomaten.nu" subject="Let it be" >
+  	<text>
+        Let it be, let it be
+        Let it be, let it be.
+        Whisper words of wisdom, let it be.
+	</text>
+    <in-reply-to from="paul.mccartney@apple.uk">
+        <text>
+            And though the night is cloudy,
+            There is still a light that shines on me,
+            Shine until tomorrow, let it be.
+            O, will I make up to the sound of music
+            Mother Mary comes to me
+            Speaking words of wisdom, let it be.
+        </text>
+    </in-reply-to>
+    <in-reply-to from="george.harrison@apple.uk">
+        <text>
+            And when the broken hearted people
+            Living in the world agree,
+            There will be an answer, let it be.
+            And though they may be parted there is
+            Still a chance that they will see
+            There will be an answer, let it be.
+        </text>
+    </in-reply-to>
+    <in-reply-to from="ringo.starr@apple.uk">
+        <text>
+            When I find myself in times of trouble
+            Mother Mary comes to me
+            Speaking words of wisdom, let it be.
+            And in my hour of darkness
+            She is standing right in front of me
+            Speaking words of wisdom, let it be.
+        </text>
+    </in-reply-to>
+  </message>
+  
+  <message subject="Gruß aus Bregenz" to="all@ofyou.com" from="ge@fhv.at">
+  	<text>Schöne Gruesse vom Bodensee</text>
+  </message>
+  
+  <message subject="Gruß von der FH" to="someone@else.com" from="some@body.com">
+  	<text>Salü!</text>
+  </message>
+
+</messages>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

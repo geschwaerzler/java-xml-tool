@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<addressbook
+	xmlns="http://xmllab.fhv.at/addressbook"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://xmllab.fhv.at/addressbook addressbook.xsd "
+>
+    <person>
+        <firstname>Gerhard</firstname>
+        <lastname>Schwärzler</lastname>
+        <address type="home">
+            <street>Rathausstraße 2</street>
+            <zip>6900</zip>
+            <city>Bregenz</city>
+        </address>
+        <address type="work">
+            <street>Achstraße 1</street>
+            <zip>6850</zip>
+            <city>Dornbirn</city>
+        </address>
+    </person>
+    
+    <person>
+        <firstname>Regine</firstname>
+        <lastname>Bolter</lastname>
+        <address type="work">
+            <street>Achstraße 1</street>
+            <zip>6850</zip>
+            <city>Dornbirn</city>
+            <country>Austria</country>
+        </address>
+    </person>
+    
+</addressbook>
