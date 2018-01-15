@@ -43,11 +43,11 @@ There are two levels of sytactic validity of XML documents. **Well-formed** XML 
 XMLTool implements the following commands:
 * check, if the file xml/addresses.xml is *well-formed*:  
 `java -jar target/XMLTool.jar parse xml/addresses.xml`
-* *validate* file xml/addresses.xml against the schema definition xml/addressbook.xsd
+* *validate* file xml/addresses.xml against the schema definition xml/addressbook.xsd  
 `java -jar target/XMLTool.jar validate xml/addressbook.xsd xml/addresses.xml`
 
 ### Transforming XML files with XSLT
-XML stylesheet language transformations (XSLT) allow you to convert a given XML structure into another one. This mapping is programmed (or lets say specified) by a so called *stylesheet*, which is itself a XML document of type XSLT (file-extension .xsl). You may perform a XSL tarsnformation with XSLTool by issueing:
+XML stylesheet language transformations (XSLT) allow you to convert a given XML structure into another one. The conversion is specified (or let's say programmed) by a so called *stylesheet*, which is itself a XML document of type XSLT (file-extension .xsl). You may perform a XSL tarsnformation with XSLTool by issueing:
 
 `java -jar target/XMLTool.jar transform xml/addresses2html.xsl xml/addresses.xml xml/addresses.html`
 
