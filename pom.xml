@@ -175,6 +175,31 @@
                       <goal>run</goal>
                   </goals>
               </execution>
+              <execution> <!-- mvn antrun:run@carRental2java -->
+                  <id>carRental2java</id>
+                  <phase>none</phase>
+                  <configuration>
+                      <target>
+                          <echo message="Start generating entities ..."/>
+                          <taskdef name="hibernatetool" classname="org.hibernate.tool.ant.HibernateToolTask"/>
+                          <hibernatetool>
+                              <classpath>
+                              	<path location="hibernatetool/"/>
+                              </classpath>
+                              <jdbcconfiguration
+                                  revengfile="hibernatetool/carRental.xml"
+                                  packagename="at.fhv.xmltool.carrental.jpa"
+                                  detectmanytomany="true"
+                                  propertyfile="hibernatetool/carRental.properties"/>
+                              <hbm2java destdir="src/main/java" jdk5="true" ejb3="true"/>
+                          </hibernatetool>
+                          <echo message="End generating entities"/>
+                      </target>
+                  </configuration>
+                  <goals>
+                      <goal>run</goal>
+                  </goals>
+              </execution>
           </executions>
           <dependencies>
               <dependency>
@@ -211,6 +236,11 @@
                   <groupId>org.apache.derby</groupId>
                   <artifactId>derby</artifactId>
                   <version>10.13.1.1</version>
+              </dependency>
+              <dependency>
+                  <groupId>org.postgresql</groupId>
+                  <artifactId>postgresql</artifactId>
+                  <version>42.1.4</version>
               </dependency>
               <dependency>
                   <groupId>commons-logging</groupId>

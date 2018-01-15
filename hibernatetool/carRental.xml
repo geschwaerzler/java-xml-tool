@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-reverse-engineering PUBLIC
+  "-//Hibernate/Hibernate Reverse Engineering DTD 3.0//EN"
+  "http://hibernate.sourceforge.net/hibernate-reverse-engineering-3.0.dtd" >
+
+<hibernate-reverse-engineering>
+  <schema-selection match-schema="public"/>
+  <!--
+  <table schema="CarRental" name="stadt" class="at.fhv.xmltool.carrental.jpa.JPAStadt">
+    <primary-key>
+      <generator class="increment"/>
+    </primary-key>
+    <foreign-key foreign-schema="APP" foreign-table="PERSONS">
+      <column-ref local-column="person_id" foreign-column="id"/>
+      <many-to-one property="person"/>
+      <set property="addresses"/>
+    </foreign-key>
+  </table>
+  <table schema="APP" name="PERSONS" class="at.fhv.xmltool.addressbook.jpa.JPAPerson">
+    <primary-key>
+      <generator class="increment"/>
+    </primary-key>
+  </table>
+-->
+
+  <table schema="public" name="auto" class="at.fhv.xmltool.carrental.jpa.JPAAuto">
+  </table>
+
+
+</hibernate-reverse-engineering>
