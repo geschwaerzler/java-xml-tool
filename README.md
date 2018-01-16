@@ -45,13 +45,17 @@ XMLTool implements the following commands:
 `java -jar target/XMLTool.jar parse xml/addresses.xml`
 * *validate* file xml/addresses.xml against the schema definition xml/addressbook.xsd  
 `java -jar target/XMLTool.jar validate src/main/resources/addressbook.xsd xml/addresses.xml`
+* or *validate* file xml/car-rental.xml against the document type definition xml/car-rental.dtd  
+`java -jar target/XMLTool.jar validate xml/car-rental.dtd xml/car-rental.xml`
 
 ### Transforming XML files with XSLT
 XML stylesheet language transformations (XSLT) allow you to convert a given XML structure into another one. The conversion is specified (or let's say programmed) by a so called *stylesheet*, which is itself a XML document of type XSLT (file-extension .xsl). You may perform a XSL tarsnformation with XSLTool by issueing:
 
 `java -jar target/XMLTool.jar transform xml/addresses2html.xsl xml/addresses.xml xml/addresses.html`
 
-where the resulating file xml/addresses.html will be created or overwritten.
+where the resulating file xml/addresses.html will be created or overwritten. Or alternatively:
+
+`java -jar target/XMLTool.jar transform xml/car-rental2html.xsl xml/car-rental.xml xml/car-rental.html`
 
 ### Load XML Data into Database
 
