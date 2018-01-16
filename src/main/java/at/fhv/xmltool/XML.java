@@ -46,21 +46,21 @@ public class XML {
 		try {
 		    if (args.length == 0) throw new CommandSytaxException();
 		    String command = args[0];
-	    	if ("parse".equals(command) && args.length == 2) {
-		    	parse(args[1]);
-		    	System.out.println(args[1] + " parsed successfully");
-	    	} else if ("validate".equals(command) && args.length == 3) {
-		    	validate(args[1], args[2]);
-		    	System.out.println(args[2] + " is valid against " + args[1]);
+			if ("parse".equals(command) && args.length == 2) {
+				parse(args[1]);
+				System.out.println(args[1] + " parsed successfully");
+			} else if ("validate".equals(command) && args.length == 3) {
+				validate(args[1], args[2]);
+				System.out.println(args[2] + " is valid against " + args[1]);
 			} else if ("transform".equals(command) && args.length == 4) {
 				transform(args[1], args[2], args[3]);
 			} else if ("derby".equals(command) && args.length == 3) {
 				derby(args[1], args[2]);
 			} else if ("load".equals(command) && args.length == 2) {
 				load(args[1]);
-	    	} else {
-	    		throw new CommandSytaxException();
-	    	}
+			} else {
+				throw new CommandSytaxException();
+			}
 		} catch (CommandSytaxException e) {
 			System.out.println("usage:");
 			System.out.println("\tparse xmlfile");
@@ -80,12 +80,22 @@ public class XML {
         parser.parse(new File(xmlPath));
     }
     
-    static void validate(String xsdPath, String xmlPath) throws SAXException, IOException {
-        SchemaFactory factory = 
-                SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
-        Schema schema = factory.newSchema(new File(xsdPath));
-        Validator validator = schema.newValidator();
-        validator.validate(new StreamSource(new File(xmlPath)));
+    static void validate(String xsdPath, String xmlPath)
+    	throws SAXException, IOException, ParserConfigurationException {
+		if (xsdPath.endsWith(".dtd")) {
+			System.out.println("NOTE: The DTD file used will be derived from the DOCTYPE declaration!");
+	        // parse the XML document into a DOM tree with validation activated
+			DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+			factory.setValidating(true);
+	        DocumentBuilder parser = factory.newDocumentBuilder();
+	        //we don't do anything with the parsed DOM tree. We just parse it to check wellformedness and validity
+	        parser.parse(new File(xmlPath));
+		} else {
+			SchemaFactory factory = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
+	        Schema schema = factory.newSchema(new File(xsdPath));
+	        Validator validator = schema.newValidator();
+	        validator.validate(new StreamSource(new File(xmlPath)));
+		}
     }
 
 	static void transform(String xsltPath, String inPath, String outPath)
