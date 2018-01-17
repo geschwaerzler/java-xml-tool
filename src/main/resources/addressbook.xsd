@@ -3,7 +3,21 @@
 	xmlns:xsd="http://www.w3.org/2001/XMLSchema"
 	xmlns="http://xmllab.fhv.at/addressbook"
 	targetNamespace="http://xmllab.fhv.at/addressbook"
-	elementFormDefault="qualified">
+	elementFormDefault="qualified"
+	
+	xmlns:jaxb="http://java.sun.com/xml/ns/jaxb"
+    jaxb:version="2.0">
+
+	<xsd:annotation>
+        <xsd:appinfo>
+			<jaxb:schemaBindings>
+				<jaxb:package name="at.fhv.xmltool.addressbook.jaxb"/>
+				<jaxb:nameXmlTransform>
+					<jaxb:typeName prefix="JAXB"/>
+				</jaxb:nameXmlTransform>
+			</jaxb:schemaBindings>      
+        </xsd:appinfo>
+    </xsd:annotation>
 	
 	<xsd:element name="addressbook" type="addressbook-type"/>
 	<xsd:element name="address" type="address-type"/>
