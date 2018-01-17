@@ -97,28 +97,43 @@
         </executions>
       </plugin>
 
+      <!-- XJC XML schema to java compiler -->
       <plugin>
         <groupId>org.jvnet.jaxb2.maven2</groupId>
         <artifactId>maven-jaxb2-plugin</artifactId>
-        <version>0.11.0</version>
+        <version>0.13.3</version>
         <executions>
+            <!-- compile DTD file car-rental.dtd -->
             <execution>
+                <id>jaxb-generate-from-dtd</id>
                 <goals>
                     <goal>generate</goal>
                 </goals>
+                <configuration>
+                    <schemaDirectory>src/main/resources</schemaDirectory>
+                    <schemaIncludes>
+                        <include>car-rental.dtd</include>
+                    </schemaIncludes>
+                    <schemaLanguage>DTD</schemaLanguage>
+                    <generateDirectory>${project.build.directory}/generated-sources/xjc-dtd</generateDirectory>
+                    <generatePackage>at.fhv.xmltool.carrental.jaxb</generatePackage>
+                </configuration>
+            </execution>
+
+            <!-- compile XSD files -->
+            <execution>
+                <id>jaxb-generate-from-xsd</id>
+                <goals>
+                    <goal>generate</goal>
+                </goals>
+                <configuration>
+                    <schemaDirectory>src/main/resources</schemaDirectory>
+                    <schemaIncludes>
+                        <include>*.xsd</include>
+                    </schemaIncludes>
+                </configuration>
             </execution>
         </executions>
-        <configuration>
-          <schemaDirectory>src/main/resources</schemaDirectory>
-          <schemaIncludes>
-            <include>*.xsd</include>
-          </schemaIncludes>
-          <bindingDirectory>src/main/resources</bindingDirectory>
-		  <bindingIncludes>
-		    <include>*.xjb</include>
-		  </bindingIncludes>
-          
-        </configuration>
       </plugin>
 
       <plugin>

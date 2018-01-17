@@ -33,6 +33,7 @@ import org.w3c.dom.Document;
 import org.xml.sax.SAXException;
 
 import at.fhv.xmltool.addressbook.jaxb.JAXBAddressbookType;
+import at.fhv.xmltool.carrental.jaxb.CarRental;
 import at.fhv.xmltool.messages2.jaxb.JAXBMessageListType;
 
 public class XML {
@@ -133,31 +134,36 @@ public class XML {
 			File xmlFile = new File(xmlPath);
 			StreamSource xmlSource = new StreamSource(xmlFile);
 
-			JAXBContext context = JAXBContext.newInstance("at.fhv.xmltool.addressbook.jaxb:at.fhv.xmltool.messages2.jaxb");
+			JAXBContext context = JAXBContext.newInstance("at.fhv.xmltool.addressbook.jaxb:at.fhv.xmltool.messages2.jaxb:at.fhv.xmltool.carrental.jaxb");
 			Unmarshaller um = context.createUnmarshaller();
-			JAXBElement<?> rootElem = (JAXBElement<?>)um.unmarshal(xmlSource);
+			Object dom = um.unmarshal(xmlSource);
 
 			//output to console
-			System.out.println("load: " + xmlPath + " successfully unmarshalled to JAXB:");
-			Marshaller m = context.createMarshaller();
-			m.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
-			m.marshal(rootElem, System.out);
+			// System.out.println("load: " + xmlPath + " successfully unmarshalled to JAXB:");
+			// Marshaller m = context.createMarshaller();
+			// m.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
+			// m.marshal(dom, System.out);
 
-			if (rootElem.getDeclaredType() == JAXBAddressbookType.class) {
-				JAXBAddressbookType addressbook = (JAXBAddressbookType)rootElem.getValue();
+			if (dom instanceof CarRental) {
+				CarRentalLoader.load( (CarRental)dom );
+			} else {
+				JAXBElement<?> rootElem = (JAXBElement<?>) dom;
+				if (rootElem.getDeclaredType() == JAXBAddressbookType.class) {
+					JAXBAddressbookType addressbook = (JAXBAddressbookType)rootElem.getValue();
 
-				Addresses.addSomeAddress(addressbook);
+					Addresses.addSomeAddress(addressbook);
 
-				//output to console
-				System.out.println("load: Donald successfully added:");
-				m.marshal(rootElem, System.out);
+					//output to console
+					// System.out.println("load: Donald successfully added:");
+					// m.marshal(rootElem, System.out);
 
-				Addresses.load( (JAXBAddressbookType)rootElem.getValue() );
-			} else if (rootElem.getDeclaredType() == JAXBMessageListType.class) {
-				Messages2.load( (JAXBMessageListType)rootElem.getValue() );
+					Addresses.load( (JAXBAddressbookType)rootElem.getValue() );
+				} else if (rootElem.getDeclaredType() == JAXBMessageListType.class) {
+					Messages2.load( (JAXBMessageListType)rootElem.getValue() );
+				}
 			}
 
-		} catch (JAXBException e) {
+		} catch (Exception e) {
 			System.out.println(e.getMessage());
 			e.printStackTrace();
 		}

@@ -22,9 +22,19 @@
     </primary-key>
   </table>
 -->
+  
+  <table schema="public" name="stadt" class="at.fhv.xmltool.carrental.jpa.JPAStadt"/>
+  <table schema="public" name="kunde" class="at.fhv.xmltool.carrental.jpa.JPAKunde"/>
+  <table schema="public" name="autokategorie" class="at.fhv.xmltool.carrental.jpa.JPAAutokategorie"/>
 
-  <table schema="public" name="auto" class="at.fhv.xmltool.carrental.jpa.JPAAuto">
-  </table>
+  <table schema="public" name="autotyp" class="at.fhv.xmltool.carrental.jpa.JPAAutotyp"/>
+  <table schema="public" name="vermietstation" class="at.fhv.xmltool.carrental.jpa.JPAVermietstation"/>
+  
+  <table schema="public" name="auto" class="at.fhv.xmltool.carrental.jpa.JPAAuto"/>
+  <table schema="public" name="extraausstattung" class="at.fhv.xmltool.carrental.jpa.JPAExtraausstattung"/>
+  <table schema="public" name="reservierung" class="at.fhv.xmltool.carrental.jpa.JPAReservierung"/>
 
+  <table schema="public" name="mietvertrag" class="at.fhv.xmltool.carrental.jpa.JPAMietvertrag"/>
+  <table schema="public" name="verfuegt_ueber" class="at.fhv.xmltool.carrental.jpa.JPAVerfuegtUeber"/>
 
 </hibernate-reverse-engineering>
