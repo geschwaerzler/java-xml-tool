@@ -104,7 +104,7 @@
         <version>0.13.3</version>
         <executions>
             <!-- compile DTD file car-rental.dtd -->
-            <execution>
+            <!-- execution>
                 <id>jaxb-generate-from-dtd</id>
                 <goals>
                     <goal>generate</goal>
@@ -118,10 +118,10 @@
                     <generateDirectory>${project.build.directory}/generated-sources/xjc-dtd</generateDirectory>
                     <generatePackage>at.fhv.xmltool.carrental.jaxb</generatePackage>
                 </configuration>
-            </execution>
+            </execution -->
 
             <!-- compile XSD files -->
-            <execution>
+            <!-- execution>
                 <id>jaxb-generate-from-xsd</id>
                 <goals>
                     <goal>generate</goal>
@@ -132,7 +132,7 @@
                         <include>*.xsd</include>
                     </schemaIncludes>
                 </configuration>
-            </execution>
+            </execution -->
         </executions>
       </plugin>
 
