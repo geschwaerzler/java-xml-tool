@@ -22,7 +22,9 @@
 hs_err_pid*
 
 # maven artifacts
-target/
+target/classes/
+target/maven-status/
+
 
 # derby databases
 derby.data/

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<bindings xmlns="http://java.sun.com/xml/ns/jaxb" if-exists="true" version="2.1">
+  <!--
+
+Diese Datei wurde mit der JavaTM Architecture for XML Binding(JAXB) Reference Implementation, v2.2.11 generiert 
+Siehe <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
+Änderungen an dieser Datei gehen bei einer Neukompilierung des Quellschemas verloren. 
+Generiert: 2018.01.18 um 11:05:38 AM CET 
+
+  -->
+  <bindings xmlns:tns="http://xmllab.fhv.at/addressbook" if-exists="true" scd="x-schema::tns">
+    <schemaBindings map="false">
+      <package name="at.fhv.xmltool.addressbook.jaxb"/>
+    </schemaBindings>
+    <bindings if-exists="true" scd="~tns:addressbook-type">
+      <class ref="at.fhv.xmltool.addressbook.jaxb.JAXBAddressbookType"/>
+    </bindings>
+    <bindings if-exists="true" scd="~tns:address-type">
+      <class ref="at.fhv.xmltool.addressbook.jaxb.JAXBAddressType"/>
+    </bindings>
+    <bindings if-exists="true" scd="~tns:person-type">
+      <class ref="at.fhv.xmltool.addressbook.jaxb.JAXBPersonType"/>
+    </bindings>
+    <bindings if-exists="true" scd="~tns:address-type-enum">
+      <typesafeEnumClass ref="at.fhv.xmltool.addressbook.jaxb.JAXBAddressTypeEnum"/>
+    </bindings>
+  </bindings>
+  <bindings xmlns:tns="http://xmllab.fhv.at/messages2" if-exists="true" scd="x-schema::tns">
+    <schemaBindings map="false">
+      <package name="at.fhv.xmltool.messages2.jaxb"/>
+    </schemaBindings>
+    <bindings if-exists="true" scd="~tns:message-list-type">
+      <class ref="at.fhv.xmltool.messages2.jaxb.JAXBMessageListType"/>
+    </bindings>
+    <bindings if-exists="true" scd="~tns:message-type">
+      <class ref="at.fhv.xmltool.messages2.jaxb.JAXBMessageType"/>
+    </bindings>
+    <bindings if-exists="true" scd="~tns:in-reply-to-type">
+      <class ref="at.fhv.xmltool.messages2.jaxb.JAXBInReplyToType"/>
+    </bindings>
+  </bindings>
+</bindings>
