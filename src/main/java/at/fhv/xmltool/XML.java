@@ -139,10 +139,10 @@ public class XML {
 			Object dom = um.unmarshal(xmlSource);
 
 			//output to console
-			// System.out.println("load: " + xmlPath + " successfully unmarshalled to JAXB:");
-			// Marshaller m = context.createMarshaller();
-			// m.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
-			// m.marshal(dom, System.out);
+			System.out.println("load: " + xmlPath + " successfully unmarshalled to JAXB:");
+			Marshaller m = context.createMarshaller();
+			m.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
+			m.marshal(dom, System.out);
 
 			if (dom instanceof CarRental) {
 				CarRentalLoader.load( (CarRental)dom );
@@ -154,8 +154,8 @@ public class XML {
 					Addresses.addSomeAddress(addressbook);
 
 					//output to console
-					// System.out.println("load: Donald successfully added:");
-					// m.marshal(rootElem, System.out);
+					System.out.println("load: Donald successfully added:");
+					m.marshal(rootElem, System.out);
 
 					Addresses.load( (JAXBAddressbookType)rootElem.getValue() );
 				} else if (rootElem.getDeclaredType() == JAXBMessageListType.class) {
